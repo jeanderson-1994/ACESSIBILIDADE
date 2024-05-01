@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Modal Acessível</title>
+</head>
+<body>
+<!-- Conteúdos principais -->
+<h1 id="main-title"> Acessibilidade é para todos</h1>
+<p id="main-text"> Seja bem-vindo na página acessibilidade é para todos,<br>
+aqui você encontrará diversos conteúdos!</p>
+
+<!-- Botão para abrir a modal -->
+<button id="openModalBtn" onclick="openModal()">Acessar informações sobre acessibilidade é para todos</button>
+
+<!-- A modal -->
+<div id="myModal" class="modal" aria-hidden="true">
+  <div class="modal-content">
+    <button id="closeModalBtn" class="close-button" onclick="closeModal()">Fechar</button>
+
+    <h1 id="modal-title">Seja bem-vindo</h1>
+    <h2>Você está na página de acessibilidade</h2>
+    <p>Aqui você será direcionado para o formulário, respondendo a seguinte pergunta:<br> o que você entende de acessibilidade?</p>
+    <!-- Botão para direcionar para o Gmail -->
+    <button onclick="window.location.href='https://mail.google.com'">Continuar para o Gmail</button>
+  </div>
+</div>
+
+<script>
+// Variáveis globais para os elementos principais
+var mainTitle = document.getElementById("main-title");
+var mainText = document.getElementById("main-text");
+
+function openModal() {
+  var modal = document.getElementById("myModal");
+  var modalTitle = document.getElementById('modal-title');
+  var closeModalBtn = document.getElementById('closeModalBtn'); // Adicione esta linha para obter o botão de fechar
+
+  // Exibindo a modal
+  modal.style.display = "block";
+  modal.setAttribute('aria-hidden', 'false');
+
+  // Ocultando visualmente e para leitores de tela os conteúdos principais
+  mainTitle.setAttribute('aria-hidden', 'true');
+  mainTitle.style.visibility = "hidden";
+  mainText.setAttribute('aria-hidden', 'true');
+  mainText.style.visibility = "hidden";
+
+  // Ocultando o botão de abrir a modal
+  openModalBtn.style.display = "none";
+
+  // Focando no botão de fechar
+  closeModalBtn.focus();
+}
+
+// Função para fechar a modal
+function closeModal() {
+  var modal = document.getElementById("myModal");
+  
+  // Ocultando a modal
+  modal.style.display = "none";
+  modal.setAttribute('aria-hidden', 'true');
+
+  // Exibindo visualmente e para leitores de tela os conteúdos principais
+  mainTitle.setAttribute('aria-hidden', 'false');
+  mainTitle.style.visibility = "visible";
+  mainText.setAttribute('aria-hidden', 'false');
+  mainText.style.visibility = "visible";
+
+  // Exibindo o botão de abrir a modal
+  openModalBtn.style.display = "block";
+
+  // Focando no botão de abrir a modal após fechar a modal
+  openModalBtn.focus();
+}
+</script>
+
+</body>
+</html>
